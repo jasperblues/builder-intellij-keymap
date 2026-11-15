@@ -1,0 +1,59 @@
+/*
+ * IntelliJ IDEA-style keymap for GNOME Builder 50.
+ * https://github.com/jasperblues/builder-intellij-keymap
+ *
+ * "override" moves one of Builder's own shortcuts to a new key, keeping
+ * the context it normally works in. Entries with "action" add new keys.
+ * "capture" lets a key win over the editor's built-in bindings (e.g. Ctrl+D).
+ */
+[
+  /* Navigation */
+  { "trigger" : "<Control><Shift>n", "action" : "context.workbench.global-search", "when" : "canSearch()", "phase" : "capture" },
+  { "trigger" : "<Control>n", "action" : "context.workbench.global-search", "when" : "canSearch()", "phase" : "capture" },
+  { "trigger" : "<Control><Shift>a", "action" : "context.workbench.global-search", "when" : "canSearch() && !inTerminal()", "phase" : "capture" },
+  { "trigger" : "<Control>e", "action" : "context.workbench.global-search", "when" : "canSearch() && !inTerminal()", "phase" : "capture" },
+  { "override" : "org.gnome.builder.editor.goto-line", "trigger" : "<Control>g" },
+  { "override" : "org.gnome.builder.editor.goto-declaration", "trigger" : "<Control>b" },
+  { "trigger" : "<Control><Alt>b", "action" : "page.codeui.goto-definition", "when" : "inEditor()", "phase" : "capture" },
+  { "trigger" : "<Alt>F7", "action" : "page.codeui.find-references", "when" : "inEditor()", "phase" : "capture" },
+  { "trigger" : "<Control>F12", "action" : "workspace.symbol-tree.focus", "when" : "canEdit()", "phase" : "capture" },
+  { "override" : "org.gnome.builder.editor.diagnostics.next", "trigger" : "F2" },
+  { "override" : "org.gnome.builder.editor.diagnostics.previous", "trigger" : "<Shift>F2" },
+
+  /* Search */
+  { "override" : "org.gnome.builder.editor.find-replace", "trigger" : "<Control>r" },
+  { "override" : "org.gnome.builder.editor.search.move-next", "trigger" : "F3" },
+  { "override" : "org.gnome.builder.editor.search.move-previous", "trigger" : "<Shift>F3" },
+  { "trigger" : "<Control><Shift>f", "action" : "workspace.grep.panel.show", "when" : "canEdit() && !inTerminal()", "phase" : "capture" },
+
+  /* Editing */
+  { "trigger" : "<Control>d", "action" : "buffer.duplicate-line", "when" : "inEditor()", "phase" : "capture" },
+  { "trigger" : "<Control>y", "action" : "buffer.delete-line", "when" : "inEditor()", "phase" : "capture" },
+  { "trigger" : "<Control><Shift>j", "action" : "selection.join", "when" : "inEditor()", "phase" : "capture" },
+  { "trigger" : "<Control>slash", "action" : "page.comment-code.comment-code", "args" : "'0'", "when" : "canEdit()", "phase" : "capture" },
+  { "trigger" : "<Control><Shift>slash", "action" : "page.comment-code.comment-code", "args" : "'1'", "when" : "canEdit()", "phase" : "capture" },
+  { "trigger" : "<Control><Alt>l", "action" : "page.editor.format-document", "when" : "inEditor()", "phase" : "capture" },
+  { "trigger" : "<Shift>F6", "action" : "page.codeui.rename-symbol", "when" : "inEditor()", "phase" : "capture" },
+  { "trigger" : "<Alt>Return", "action" : "page.codeui.code-actions", "when" : "inEditor()", "phase" : "capture" },
+  { "override" : "org.gnome.builder.editor.document.new", "trigger" : "<Alt>Insert" },
+
+  /* Tabs and tool windows */
+  { "trigger" : "<Control>F4", "action" : "frame.close-page-or-frame", "when" : "inPage()", "phase" : "capture" },
+  { "override" : "org.gnome.builder.workspace.panels.left.toggle", "trigger" : "<Alt>1" },
+  { "override" : "org.gnome.builder.workspace.panels.bottom.toggle", "trigger" : "<Alt>F12" },
+  { "override" : "org.gnome.builder.preferences", "trigger" : "<Control><Alt>s" },
+
+  /* Build, run, debug */
+  { "override" : "org.gnome.builder.pipeline.build", "trigger" : "<Control>F9" },
+  { "override" : "org.gnome.builder.project.run", "trigger" : "<Shift>F10" },
+  { "override" : "org.gnome.builder.project.stop", "trigger" : "<Control>F2" },
+  { "override" : "org.gnome.builder.debugger.run", "trigger" : "<Shift>F9" },
+  { "override" : "org.gnome.builder.debugger.step-over", "trigger" : "F8" },
+  { "override" : "org.gnome.builder.debugger.step-in", "trigger" : "F7" },
+  { "override" : "org.gnome.builder.debugger.step-out", "trigger" : "<Shift>F8" },
+  { "override" : "org.gnome.builder.debugger.continue", "trigger" : "F9" },
+  { "override" : "org.gnome.builder.debugger.toggle-breakpoint", "trigger" : "<Control>F8" },
+
+  /* Ctrl+Q is Quick Documentation in IntelliJ, so don't let it quit Builder */
+  { "override" : "org.gnome.builder.quit", "trigger" : "<Control><Shift>q" }
+]
